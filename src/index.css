@@ -1,13 +1,66 @@
+/* Simple example CSS for layout and styling */
+
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header {
+  background: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.cart {
+  float: right;
+  margin-top: -20px;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.item-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  width: 200px;
+  text-align: center;
+}
+
+.item-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.cart-view {
+  padding: 20px;
+}
+
+.cart-view ul {
+  list-style-type: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
 }
