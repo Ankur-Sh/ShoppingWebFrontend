@@ -3,11 +3,13 @@ import Header from "./Components/Header";
 import ItemCard from "./Components/ItemCard";
 import ItemDetailsModal from "./Components/ItemDetailsModal";
 import ViewCart from "./Components/ViewCart";
+import { FaShoppingCart } from 'react-icons/fa'; // For the cart icon
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [modalItem, setModalItem] = useState(null);
+  const [cartVisible, setCartVisible] = useState(false); // State to toggle cart visibility
 
   // Fetch products from the API
   useEffect(() => {
@@ -22,26 +24,22 @@ const App = () => {
       });
   }, []);
 
-  // Add item to the cart, allowing duplicates
   const addToCart = (item) => {
-    setCart((prevCart) => [...prevCart, item]); // Add the item to the cart
+    setCart((prevCart) => [...prevCart, item]);
   };
 
-  // Remove a specific item from the cart
   const removeFromCart = (item) => {
     setCart((prevCart) => {
-      // Remove only the first matching instance of the item in the cart
       const indexToRemove = prevCart.findIndex(cartItem => cartItem.id === item.id);
       if (indexToRemove !== -1) {
         return [
           ...prevCart.slice(0, indexToRemove),
           ...prevCart.slice(indexToRemove + 1)
-        ]; // Return the updated cart excluding the item at indexToRemove
+        ];
       }
       return prevCart;
     });
   };
-
 
   const viewItemDetails = (item) => {
     setModalItem(item);
@@ -51,9 +49,18 @@ const App = () => {
     setModalItem(null);
   };
 
+  const toggleCart = () => {
+    setCartVisible(!cartVisible); // Toggle the cart visibility
+  };
+
   return (
     <div className="app">
       <Header cartCount={cart.length} />
+      
+      <div className="cart-icon" onClick={toggleCart}>
+        <FaShoppingCart size={30} />
+      </div>
+      
       <div className="product-list">
         {products.map((item) => (
           <ItemCard
@@ -64,8 +71,10 @@ const App = () => {
           />
         ))}
       </div>
+      
       {modalItem && <ItemDetailsModal item={modalItem} onClose={closeModal} />}
-      <ViewCart cartItems={cart} onRemoveFromCart={removeFromCart} />
+      
+      {cartVisible && <ViewCart cartItems={cart} onRemoveFromCart={removeFromCart} />}
     </div>
   );
 };

@@ -1,5 +1,4 @@
-/* Simple example CSS for layout and styling */
-
+/* Simple CSS for the app layout */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -18,11 +17,19 @@ header {
   margin-top: -20px;
 }
 
+.cart-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
 .product-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
+  justify-content: center;
 }
 
 .item-card {
@@ -40,6 +47,14 @@ header {
 
 .cart-view {
   padding: 20px;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  background: white;
+  width: 300px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow-y: auto;
 }
 
 .cart-view ul {
@@ -63,4 +78,19 @@ header {
   padding: 20px;
   border-radius: 5px;
   width: 400px;
+}
+
+@media (max-width: 768px) {
+  .product-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart-view {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+  }
 }
